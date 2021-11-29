@@ -125,7 +125,7 @@ class ArrayHandler {
         return sumValue;
     }
 
-    public int multipleElements(){
+  /*  public int multipleElements(){
         int initValue = intArray[0];
         int evenArray[];
         for (int i = 1; i < intArray.length; i++) {
@@ -135,7 +135,7 @@ class ArrayHandler {
         }
         return;
         .removeElement(array, element)
-    }
+    }*/
 
 }
     public class StudyApp {
