@@ -128,7 +128,6 @@ class ArrayHandler {
     }
 
     public void multipleElements() {
-        printArray(intArray);
         int evenArray[] = new int[20];
         int k =0;
         for (int i = 1; i < intArray.length; i=i+2) {
@@ -176,6 +175,7 @@ class ArrayHandler {
             System.out.println("Task 6. Elements that are listed more than once and which indexes are odd: ");
             System.out.println("Initial array is: ");
             app.printArray(app.intArray);
+            System.out.println("Resulting array is: ");
             app.multipleElements();
         }
     }
