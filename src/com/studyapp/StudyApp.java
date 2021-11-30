@@ -6,9 +6,11 @@
 
 package com.studyapp;
 
+
 class ArrayHandler {
     //Constructor, which calls an array
-    int arraySize;
+    //int arraySize;
+
     ArrayHandler() {
         initArray();
     }
@@ -35,12 +37,12 @@ class ArrayHandler {
         return -1;
     }
 
-    //A method to print the array
-    public void printArray() {
+    //A method to print an array
+    public void printArray(int[] printArray) {
         System.out.print("[");
-        for (int i = 0; i < intArray.length; i++) {
-            System.out.print(intArray[i]);
-            if (i < intArray.length - 1) {
+        for (int i = 0; i < printArray.length; i++) {
+            System.out.print(printArray[i]);
+            if (i < printArray.length - 1) {
                 System.out.print("; ");
             }
         }
@@ -76,40 +78,40 @@ class ArrayHandler {
         intArray[maxNegativePosition] = tmp;
     }
 
-    //Task 2. A method to find odd elements positions
-    public int oddPositions() {
-        int sumOdds = 0;
+    //Task 2. A method to find even elements positions
+    public int evenPositions() {
+        int sumEvens = 0;
         for (int i = 0; i < intArray.length; i++) {
             if (i % 2 != 0) {
-                sumOdds = sumOdds + intArray[i];
+                sumEvens = sumEvens + intArray[i];
             }
         }
-        return sumOdds;
+        return sumEvens;
     }
 
     //Task 3. A method to replace negative values with zero
-    public void zeroReplace(){
+    public void zeroReplace() {
         for (int i = 0; i < intArray.length; i++) {
-            if (intArray[i]<0) {
+            if (intArray[i] < 0) {
                 intArray[i] = 0;
             }
         }
     }
 
     //Task 4. A method to triple elements
-    public void tripleElements(){
+    public void tripleElements() {
         for (int i = 1; i < intArray.length; i++) {
-            if (intArray[i-1]>0 && intArray[i]<0) {
-                intArray[i-1] = intArray[i-1]*3;
+            if (intArray[i - 1] > 0 && intArray[i] < 0) {
+                intArray[i - 1] = intArray[i - 1] * 3;
             }
         }
     }
 
     //Task 5.1 Minimal element
-    public int minElement(){
+    public int minElement() {
         int minElement = intArray[0];
         for (int i = 1; i < intArray.length; i++) {
-            if (intArray[i]<intArray[0]) {
+            if (intArray[i] < intArray[0]) {
                 minElement = intArray[i];
             }
         }
@@ -117,53 +119,63 @@ class ArrayHandler {
     }
 
     //Task 5.2 Average value
-    public int averageValue(){
+    public int averageValue() {
         int sumValue = 0;
         for (int i = 1; i < intArray.length; i++) {
             sumValue = sumValue + intArray[i];
-            }
+        }
         return sumValue;
     }
 
-  /*  public int multipleElements(){
-        int initValue = intArray[0];
-        int evenArray[];
-        for (int i = 1; i < intArray.length; i++) {
-            if(intArray[i] == initValue) {
-                evenArray[i] = intArray[i];
-            };
+    public void multipleElements() {
+        printArray(intArray);
+        int evenArray[] = new int[20];
+        int k =0;
+        for (int i = 1; i < intArray.length; i=i+2) {
+            for (int j = i+2; j < intArray.length; j=j+2) {
+                if (intArray[i] == intArray[j]) {
+                    evenArray[k]=intArray[j];
+                    k++;
+                    break;
+                    }
+                }
+            }
+        int resultArray[] = new int[k];
+        for (int i=0; i<k; i++){
+            resultArray[i] = evenArray[i];
         }
-        return;
-        .removeElement(array, element)
-    }*/
-
+        printArray(resultArray);
+    }
 }
     public class StudyApp {
         public static void main(String[] args) {
             ArrayHandler app = new ArrayHandler();
-            app.printArray();
+            app.printArray(app.intArray);
             app.changePosit();
-            app.printArray();
+            app.printArray(app.intArray);
             System.out.println("Task 1: ");
             System.out.println("Position of max negative element is: " + app.indexOf(app.maxNegative()));
             System.out.println("Max negative value: " + app.maxNegative());
             System.out.println("Position of min positive element is: " + app.indexOf(app.minPositive()));
             System.out.println("Min positive value: " + app.minPositive());
             System.out.println("Task 2: ");
-            System.out.println("Sum of odd elements is: " + app.oddPositions());
+            System.out.println("Sum of even elements is: " + app.evenPositions());
             System.out.println("Task 3. Negative elements are replaced with zero: ");
             app.zeroReplace();
-            app.printArray();
+            app.printArray(app.intArray);
             System.out.println("Task 4. Triple positive elements. New array is: ");
             app.initArray();
-            app.printArray();
+            app.printArray(app.intArray);
             app.tripleElements();
-            app.printArray();
+            app.printArray(app.intArray);
             System.out.println("Task 5. Difference between average and minimal element: ");
-            app.printArray();
+            app.printArray(app.intArray);
             System.out.println("Minimal element is: " + app.minElement());
             System.out.println("Average value is: " + app.averageValue());
             System.out.println("A difference between average and minimal element is: " + (app.averageValue() - app.minElement()));
+            System.out.println("Task 6. Elements that are listed more than once and which indexes are odd: ");
+            System.out.println("Initial array is: ");
+            app.printArray(app.intArray);
+            app.multipleElements();
         }
     }
-
