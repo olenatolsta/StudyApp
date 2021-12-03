@@ -4,13 +4,13 @@
  * Version 0.1
  */
 
-package com.studyapp;
+package com.studyapp.intArray;
 
+import java.util.Scanner;
 
 class ArrayHandler {
     //Constructor, which calls an array
     //int arraySize;
-
     ArrayHandler() {
         initArray();
     }
@@ -39,6 +39,7 @@ class ArrayHandler {
 
     //A method to print an array
     public void printArray(int[] printArray) {
+        System.out.println("Here is an array of int elements: ");
         System.out.print("[");
         for (int i = 0; i < printArray.length; i++) {
             System.out.print(printArray[i]);
@@ -129,53 +130,120 @@ class ArrayHandler {
 
     public void multipleElements() {
         int evenArray[] = new int[20];
-        int k =0;
-        for (int i = 1; i < intArray.length; i=i+2) {
-            for (int j = i+2; j < intArray.length; j=j+2) {
+        int k = 0;
+        for (int i = 1; i < intArray.length; i = i + 2) {
+            for (int j = i + 2; j < intArray.length; j = j + 2) {
                 if (intArray[i] == intArray[j]) {
-                    evenArray[k]=intArray[j];
+                    evenArray[k] = intArray[j];
                     k++;
                     break;
-                    }
                 }
             }
+        }
         int resultArray[] = new int[k];
-        for (int i=0; i<k; i++){
+        for (int i = 0; i < k; i++) {
             resultArray[i] = evenArray[i];
         }
         printArray(resultArray);
     }
-}
-    public class StudyApp {
-        public static void main(String[] args) {
-            ArrayHandler app = new ArrayHandler();
-            app.printArray(app.intArray);
-            app.changePosit();
-            app.printArray(app.intArray);
-            System.out.println("Task 1: ");
-            System.out.println("Position of max negative element is: " + app.indexOf(app.maxNegative()));
-            System.out.println("Max negative value: " + app.maxNegative());
-            System.out.println("Position of min positive element is: " + app.indexOf(app.minPositive()));
-            System.out.println("Min positive value: " + app.minPositive());
-            System.out.println("Task 2: ");
-            System.out.println("Sum of even elements is: " + app.evenPositions());
-            System.out.println("Task 3. Negative elements are replaced with zero: ");
-            app.zeroReplace();
-            app.printArray(app.intArray);
-            System.out.println("Task 4. Triple positive elements. New array is: ");
-            app.initArray();
-            app.printArray(app.intArray);
-            app.tripleElements();
-            app.printArray(app.intArray);
-            System.out.println("Task 5. Difference between average and minimal element: ");
-            app.printArray(app.intArray);
-            System.out.println("Minimal element is: " + app.minElement());
-            System.out.println("Average value is: " + app.averageValue());
-            System.out.println("A difference between average and minimal element is: " + (app.averageValue() - app.minElement()));
-            System.out.println("Task 6. Elements that are listed more than once and which indexes are odd: ");
-            System.out.println("Initial array is: ");
-            app.printArray(app.intArray);
-            System.out.println("Resulting array is: ");
-            app.multipleElements();
-        }
+
+    public void stringArrayTask() {
+        System.out.println("stringArrayTask");
     }
+
+    public void calculatorTask() {
+        System.out.println("calculatorTask");
+    }
+
+    public void tasksMenu() {
+        boolean validOption = true;
+        do {
+            Scanner input = new Scanner(System.in);
+            String userChoice = input.nextLine();
+            userChoosesOption(userChoice);
+        }
+        while (validOption = true);
+
+    }
+
+    private void userChoosesOption(String userChoice) {
+        boolean validOption = true;
+        switch (userChoice) {
+            case "1":
+                task1();
+                break;
+            case "2":
+                task2();
+                break;
+            case "3":
+                task3();
+                break;
+            case "4":
+                task4();
+                break;
+            case "5":
+                task5();
+                break;
+            case "6":
+                task6();
+                break;
+            case "7":
+                validOption = false;
+                System.out.println("Exiting the program");
+                System.exit(0);
+            default:
+                System.out.println("The input is wrong. Select an option to proceed - 1-6 for Tasks execution or 7 to Exit");
+                }
+        }
+
+    public void task1() {
+        printArray(intArray);
+        changePosit();
+        System.out.println("The array after changing positions of elements: ");
+        printArray(intArray);
+        System.out.println("Task 1: ");
+        System.out.println("Position of max negative element is: " + indexOf(maxNegative()));
+        System.out.println("Max negative value: " + maxNegative());
+        System.out.println("Position of min positive element is: " + indexOf(minPositive()));
+        System.out.println("Min positive value: " + minPositive());
+    }
+
+    public void task2() {
+        System.out.println("Task 2. Sum of even elements: ");
+        printArray(intArray);
+        System.out.println("Sum of even elements is: " + evenPositions());
+    }
+
+    public void task3() {
+        System.out.println("Task 3. Negative elements are replaced with zero: ");
+        printArray(intArray);
+        zeroReplace();
+        printArray(intArray);
+    }
+
+    public void task4() {
+        System.out.println("Task 4. Triple positive elements. New array is: ");
+        initArray();
+        printArray(intArray);
+        tripleElements();
+        printArray(intArray);
+    }
+
+    public void task5() {
+        System.out.println("Task 5. Difference between average and minimal element: ");
+        printArray(intArray);
+        System.out.println("Minimal element is: " + minElement());
+        System.out.println("Average value is: " + averageValue());
+        System.out.println("A difference between average and minimal element is: " + (averageValue() - minElement()));
+    }
+
+    public void task6() {
+        System.out.println("Task 6. Elements that are listed more than once and which indexes are odd: ");
+        System.out.println("Initial array is: ");
+        printArray(intArray);
+        System.out.println("Resulting array is: ");
+        multipleElements();
+    }
+
+}
+
