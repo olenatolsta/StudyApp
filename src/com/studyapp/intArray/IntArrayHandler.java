@@ -8,18 +8,22 @@ package com.studyapp.intArray;
 
 import java.util.Scanner;
 
-class ArrayHandler {
+class IntArrayHandler {
+    //class variable - field
+    int _arraySize;
+
     //Constructor, which calls an array
-    //int arraySize;
-    ArrayHandler() {
-        initArray();
+    IntArrayHandler(int arraySize) {
+        _arraySize=arraySize;
+    initArray();
     }
 
     //declare a variable, that's going to store the array
-    int[] intArray = new int[20];
+    int[] intArray;
 
     //Initialize the initial array
     public int[] initArray() {
+        intArray = new int[_arraySize];
         for (int i = 0; i < intArray.length; i++) {
             int n = (int) (Math.random() * 15 - 5);
             intArray[i] = n;
@@ -51,9 +55,9 @@ class ArrayHandler {
     }
 
     public int maxNegative() {
-        int maxNegat = -99;
+        int maxNegat = 0;// whe do you need -99 and 99
         for (int i = 0; i < intArray.length - 1; i++) {
-            if (intArray[i] > maxNegat && intArray[i] < 0) {
+            if (intArray[i] < maxNegat) {
                 maxNegat = intArray[i];
             }
         }
@@ -61,9 +65,9 @@ class ArrayHandler {
     }
 
     public int minPositive() {
-        int minPosit = 99;
-        for (int i = 0; i < intArray.length; i++) {
-            if (intArray[i] < minPosit && intArray[i] > 0) {
+        int minPosit = 1;
+        for (int i = 0; i < intArray.length-1; i++) {
+            if (intArray[i] <= minPosit && intArray[i] > 0) {
                 minPosit = intArray[i];
             }
         }
@@ -156,18 +160,18 @@ class ArrayHandler {
     }
 
     public void tasksMenu() {
-        boolean validOption = true;
+        boolean validOption;
         do {
             Scanner input = new Scanner(System.in);
             String userChoice = input.nextLine();
-            userChoosesOption(userChoice);
+            validOption = userChoosesOption(userChoice);
         }
-        while (validOption = true);
+        while (!validOption);
 
     }
 
-    private void userChoosesOption(String userChoice) {
-        boolean validOption = true;
+    private boolean userChoosesOption(String userChoice) {
+        boolean closeApp = false;
         switch (userChoice) {
             case "1":
                 task1();
@@ -188,13 +192,14 @@ class ArrayHandler {
                 task6();
                 break;
             case "7":
-                validOption = false;
+                closeApp = true;
                 System.out.println("Exiting the program");
-                System.exit(0);
+                break;
             default:
                 System.out.println("The input is wrong. Select an option to proceed - 1-6 for Tasks execution or 7 to Exit");
-                }
         }
+        return closeApp;
+    }
 
     public void task1() {
         printArray(intArray);
