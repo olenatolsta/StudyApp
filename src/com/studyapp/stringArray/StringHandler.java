@@ -43,16 +43,53 @@ public class StringHandler {
         System.out.println("]");
     }
 
+    //Find a position of an element in an array
+    public int indexOf(String value) {
+        for (int i = 0; i < stringArray.length; i++) {
+            if (stringArray[i].equals(value)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public long charsCount(String arr) {
+        long totalChars = arr.chars().count();
+        return totalChars;
+    }
+
+    public String longestString(String[] arr) {
+        long maxChars = 0;
+        String maxStringValue = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (charsCount(arr[i]) > maxChars) {
+                maxChars = charsCount(arr[i]);
+                maxStringValue = arr[i];
+            }
+        }
+        return maxStringValue;
+    }
+
+
+    public String shortestString(String[] arr) {
+        long minChars = 0;
+        String minStringValue = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (charsCount(arr[i]) < charsCount(arr[0])) {
+                minChars = charsCount(arr[i]);
+                minStringValue = arr[i];}
+                else minStringValue = arr[0];
+            }
+        return minStringValue;
+    }
+
     public void task1() {
         String[] arr = initArray();
         printArray(arr);
-        long totalChars = 0;
-        for (int i = 0; i < arr.length; i++) {
-            totalChars = arr[i].chars().count();
-            System.out.println("String " + (i + 1) + " is: " + arr[i]);
-            String toPrint = arr[i];
-            System.out.println("String " + (i + 1) + " length is: " + totalChars);
-        }
+        System.out.println("The longest string is: " + "\"" + longestString(arr) + "\"");
+        System.out.println("The longest string length is: " + charsCount(longestString(arr)) + "\"");
+        System.out.println("The shortest string is: " + "\"" + shortestString(arr) + "\"");
+        System.out.println("The shortest string length is: " + charsCount(shortestString(arr)) + "\"");
     }
 
     public void printMenu() {
