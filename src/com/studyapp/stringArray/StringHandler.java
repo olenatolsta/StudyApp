@@ -89,7 +89,7 @@ public class StringHandler {
         return minStringValue;
     }
 
-    public void avgStringLength(String[] arr) {
+    public void biggerAverage(String[] arr) {
         long avgChars;
         long sumChars = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -97,10 +97,30 @@ public class StringHandler {
         }
         avgChars = sumChars / arr.length;
         for (int i = 0; i < arr.length; i++) {
-            if (arr.length>1 && charsCount(arr[i]) > avgChars) {
+            if (arr.length<1) {
+                System.out.println("The arrays length is less than 2 elements. Input more elements to complete the task");
+            }else if (arr.length>1 && charsCount(arr[i]) > avgChars) {
                 System.out.println(arr[i]);
                 System.out.println(charsCount(arr[i]));
-            } else System.out.println("The arrays length is less than 2 elements. Input more elements to complete the task");
+            }
+        }
+    }
+
+    public void lessAverage(String[] arr) {
+        long avgChars;
+        long sumChars = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sumChars = sumChars + charsCount(arr[i]);
+        }
+        avgChars = sumChars / arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr.length<1) {
+                System.out.println("The arrays length is less than 2 elements. Input more elements to complete the task");
+            }
+            else if (arr.length>1 && charsCount(arr[i]) < avgChars) {
+                System.out.println(arr[i]);
+                System.out.println(charsCount(arr[i]));
+            }
         }
     }
            /* for (int j = i; j < arr.length; j++) {
@@ -131,7 +151,14 @@ public class StringHandler {
         String[] arr = initArray();
         printArray(arr);
         System.out.println("The strings, which length is more than average and their length are: ");
-        avgStringLength(arr);
+        biggerAverage(arr);
+    }
+
+    public void task3() {
+        String[] arr = initArray();
+        printArray(arr);
+        System.out.println("The strings, which length is less than average and their length are: ");
+        lessAverage(arr);
     }
 
     public void printMenu() {
@@ -175,10 +202,10 @@ public class StringHandler {
             case "2":
                 task2();
                 break;
-       /*      case "3":
+            case "3":
                 task3();
                 break;
-            case "4":
+       /*      case "4":
                 task4();
                 break;
             case "5":
