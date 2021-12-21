@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class StringHandler {
 
-    //Constructor, which calls an array
+    //Constructor
     StringHandler() {
     }
 
@@ -15,10 +15,17 @@ public class StringHandler {
     //Initialize the initial array
     public String[] initArray() {
         int count = 0;
-        System.out.println("How many strings are you going to input?");
-        Scanner response = new Scanner(System.in);
-        int strCount = Integer.parseInt(response.next());
+        int strCount = 0;
         Scanner inputString = new Scanner(System.in);
+        Scanner response = new Scanner(System.in);
+        do {
+            System.out.println("How many strings are you going to input?");
+            while (!response.hasNextInt()) {
+                System.out.println("That's not a number. Please input a digit to proceed");
+                response.next();
+            }
+            strCount = Integer.parseInt(response.next());
+        } while (strCount <= 0);
         String[] stringArray = new String[strCount];
         System.out.println("Input " + strCount + " string(s). A string may consist of characters, numbers and white spaces.");
         for (int i = 0; i < stringArray.length; i++) {
@@ -70,18 +77,46 @@ public class StringHandler {
         return maxStringValue;
     }
 
-
     public String shortestString(String[] arr) {
         long minChars = 0;
         String minStringValue = "";
         for (int i = 0; i < arr.length; i++) {
             if (charsCount(arr[i]) < charsCount(arr[0])) {
                 minChars = charsCount(arr[i]);
-                minStringValue = arr[i];}
-                else minStringValue = arr[0];
-            }
+                minStringValue = arr[i];
+            } else minStringValue = arr[0];
+        }
         return minStringValue;
     }
+
+    public void avgStringLength(String[] arr) {
+        long avgChars;
+        long sumChars = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sumChars = sumChars + charsCount(arr[i]);
+        }
+        avgChars = sumChars / arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr.length>1 && charsCount(arr[i]) > avgChars) {
+                System.out.println(arr[i]);
+                System.out.println(charsCount(arr[i]));
+            } else System.out.println("The arrays length is less than 2 elements. Input more elements to complete the task");
+        }
+    }
+           /* for (int j = i; j < arr.length; j++) {
+                if (charsCount(arr[i]) > avgChars) {
+                    tempArray[k] = arr[j];
+                    k++;
+                }
+            }
+            String resultArray[] = new String[k];
+            for (i = 0; i < k; i++) {
+                resultArray[i] = tempArray[i];
+                charsCount(resultArray[i]);
+            }
+        }
+     */
+
 
     public void task1() {
         String[] arr = initArray();
@@ -90,6 +125,13 @@ public class StringHandler {
         System.out.println("The longest string length is: " + charsCount(longestString(arr)) + "\"");
         System.out.println("The shortest string is: " + "\"" + shortestString(arr) + "\"");
         System.out.println("The shortest string length is: " + charsCount(shortestString(arr)) + "\"");
+    }
+
+    public void task2() {
+        String[] arr = initArray();
+        printArray(arr);
+        System.out.println("The strings, which length is more than average and their length are: ");
+        avgStringLength(arr);
     }
 
     public void printMenu() {
@@ -130,10 +172,10 @@ public class StringHandler {
             case "1":
                 task1();
                 break;
-      /*      case "2":
+            case "2":
                 task2();
                 break;
-            case "3":
+       /*      case "3":
                 task3();
                 break;
             case "4":

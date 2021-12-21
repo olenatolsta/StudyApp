@@ -133,6 +133,7 @@ class IntArrayHandler {
     }
 
     public void multipleElements() {
+       // TODO: replace 20 with dynamic value
         int evenArray[] = new int[20];
         int k = 0;
         for (int i = 1; i < intArray.length; i = i + 2) {
