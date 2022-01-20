@@ -156,26 +156,25 @@ public class StringHandler {
         lessAverage(arr);
     }
 
-    public String uniqueChars(String str) {
-        StringBuffer uniqueStr = new StringBuffer(); // a string for unique symbols
-        String c; // current symbol in the string
-        for (int i = 0; i < str.length(); i++) {
-            c = String.valueOf(str.charAt(i)); // get a current symbol
-            if (uniqueStr.indexOf(c) == -1) // find a symbol, which is new
-                uniqueStr.append(c); // adding to the string
+    public boolean uniqueChars(String str) {  //searching for different symbols in a word
+        char c; // current symbol in the string
+        for (int i = 0; i < str.length()-1; i++) {
+            c = str.charAt(i); // get a current symbol
+            if (str.indexOf(c, i+1) >= 0) // find a symbol, which is new
+                return false;
         }
-        return uniqueStr.toString(); // returning result string
+        return true;
     }
 
     public void task4() {
-        String[] arr = initArray();
+        /*String[] arr = initArray();
         printArray(arr);
         String goal = arr[0]; // a word which we search for
         for (int i = 1; i < arr.length; i++) {
             if (uniqueChars(arr[i]).length() < uniqueChars(goal).length())
                 goal = arr[i]; // new minimal element
         }
-        System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + uniqueChars(goal).length());
+        System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + uniqueChars(goal).length());*/
     }
 
     public boolean isNumeric(String strNum) {
@@ -193,12 +192,14 @@ public class StringHandler {
     public void task5() {
         String[] arr = initArray();
         printArray(arr);
-        String goal = arr[0]; // a word which we search for
-        for (int i = 1; i < arr.length; i++) {
-            if (uniqueChars(arr[i])!=null)
-                goal = arr[i]; // assigning an array element, which consists of different symbols to a result variable
+        String goal="missing";
+        for (int i = 0; i < arr.length; i++) {
+            if (uniqueChars(arr[i])) {
+                goal = arr[i];
+                break;
+            } // assigning an array element, which consists of different symbols to a result variable
         }
-        System.out.println("A word with min different symbols is - " + goal);
+        System.out.println("A word that consists of different symbols only is - " + goal);
     }
 
     public void task6() {
@@ -267,7 +268,7 @@ public class StringHandler {
             case "5":
                 task5();
                 break;
-             case "6":
+            case "6":
                 task6();
                 break;
             case "7":
