@@ -97,9 +97,9 @@ public class StringHandler {
         }
         avgChars = sumChars / arr.length;
         for (int i = 0; i < arr.length; i++) {
-            if (arr.length<1) {
+            if (arr.length < 1) {
                 System.out.println("The arrays length is less than 2 elements. Input more elements to complete the task");
-            }else if (arr.length>1 && charsCount(arr[i]) > avgChars) {
+            } else if (arr.length > 1 && charsCount(arr[i]) > avgChars) {
                 System.out.println(arr[i]);
                 System.out.println(charsCount(arr[i]));
             }
@@ -114,29 +114,24 @@ public class StringHandler {
         }
         avgChars = sumChars / arr.length;
         for (int i = 0; i < arr.length; i++) {
-            if(arr.length<1) {
+            if (arr.length < 1) {
                 System.out.println("The arrays length is less than 2 elements. Input more elements to complete the task");
-            }
-            else if (arr.length>1 && charsCount(arr[i]) < avgChars) {
+            } else if (arr.length > 1 && charsCount(arr[i]) < avgChars) {
                 System.out.println(arr[i]);
                 System.out.println(charsCount(arr[i]));
             }
         }
     }
-           /* for (int j = i; j < arr.length; j++) {
-                if (charsCount(arr[i]) > avgChars) {
-                    tempArray[k] = arr[j];
-                    k++;
-                }
-            }
-            String resultArray[] = new String[k];
-            for (i = 0; i < k; i++) {
-                resultArray[i] = tempArray[i];
-                charsCount(resultArray[i]);
+
+    public int minElement(int[] arr) {
+        int minElement = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[0]) {
+                minElement = arr[i];
             }
         }
-     */
-
+        return minElement;
+    }
 
     public void task1() {
         String[] arr = initArray();
@@ -159,6 +154,58 @@ public class StringHandler {
         printArray(arr);
         System.out.println("The strings, which length is less than average and their length are: ");
         lessAverage(arr);
+    }
+
+    public int diffChars(String str) {
+        StringBuffer uniqueStr = new StringBuffer(); // a string for unique sybols
+        String c; // current symbol in the string
+        for (int i = 0; i < str.length(); i++) {
+            c = String.valueOf(str.charAt(i)); // get a current symbol
+            if (uniqueStr.indexOf(c) == -1) // find a symbol, which is new
+                uniqueStr.append(c); // adding to the string
+        }
+        return uniqueStr.length(); // returning the length of result string
+    }
+
+    public void task4() {
+        String[] arr = initArray();
+        printArray(arr);
+        String goal = arr[0]; // a word which we search for
+        for (int i = 1; i < arr.length; i++) {
+            if (diffChars(arr[i]) < diffChars(goal))
+                goal = arr[i]; // new minimal element
+        }
+        System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + diffChars(goal));
+    }
+
+    public boolean isNumeric(String strNum) {
+        if (strNum == null) {  //verification, that the string is not empty
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);      //checking, whether the string consists of numbers only
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public void task5() {
+        String[] arr = initArray();
+        String[] resArray = new String[2];
+        printArray(arr);
+        String goal = resArray[0]; // a word which we search for
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 1; j < resArray.length; j++) {
+                if (isNumeric(arr[i])) {
+                    resArray[j] = arr[i];
+                }
+                if (resArray[1] != null) {
+                    goal = resArray[1];
+                }
+            }
+            System.out.println("A word consisting of numbers only is " + goal);
+        }
     }
 
     public void printMenu() {
@@ -205,13 +252,13 @@ public class StringHandler {
             case "3":
                 task3();
                 break;
-       /*      case "4":
+            case "4":
                 task4();
                 break;
             case "5":
                 task5();
                 break;
-            case "6":
+       /*      case "6":
                 task6();
                 break;*/
             case "7":
