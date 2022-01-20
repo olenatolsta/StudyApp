@@ -156,15 +156,15 @@ public class StringHandler {
         lessAverage(arr);
     }
 
-    public int diffChars(String str) {
-        StringBuffer uniqueStr = new StringBuffer(); // a string for unique sybols
+    public String uniqueChars(String str) {
+        StringBuffer uniqueStr = new StringBuffer(); // a string for unique symbols
         String c; // current symbol in the string
         for (int i = 0; i < str.length(); i++) {
             c = String.valueOf(str.charAt(i)); // get a current symbol
             if (uniqueStr.indexOf(c) == -1) // find a symbol, which is new
                 uniqueStr.append(c); // adding to the string
         }
-        return uniqueStr.length(); // returning the length of result string
+        return uniqueStr.toString(); // returning result string
     }
 
     public void task4() {
@@ -172,10 +172,10 @@ public class StringHandler {
         printArray(arr);
         String goal = arr[0]; // a word which we search for
         for (int i = 1; i < arr.length; i++) {
-            if (diffChars(arr[i]) < diffChars(goal))
+            if (uniqueChars(arr[i]).length() < uniqueChars(goal).length())
                 goal = arr[i]; // new minimal element
         }
-        System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + diffChars(goal));
+        System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + uniqueChars(goal).length());
     }
 
     public boolean isNumeric(String strNum) {
@@ -192,19 +192,30 @@ public class StringHandler {
 
     public void task5() {
         String[] arr = initArray();
+        printArray(arr);
+        String goal = arr[0]; // a word which we search for
+        for (int i = 1; i < arr.length; i++) {
+            if (uniqueChars(arr[i])!=null)
+                goal = arr[i]; // assigning an array element, which consists of different symbols to a result variable
+        }
+        System.out.println("A word with min different symbols is - " + goal);
+    }
+
+    public void task6() {
+        String[] arr = initArray();
         String[] resArray = new String[2];
         printArray(arr);
         String goal = resArray[0]; // a word which we search for
         for (int i = 1; i < arr.length; i++) {
             for (int j = 1; j < resArray.length; j++) {
                 if (isNumeric(arr[i])) {
-                    resArray[j] = arr[i];
+                    resArray[j] = arr[i]; //adding a word, which consists of numbers only, into result array
                 }
-                if (resArray[1] != null) {
-                    goal = resArray[1];
+                if (resArray[1] != null) {  //verify, if there's only 1 word which consists of numbers only
+                    goal = resArray[1];     //adding the 2nd word as a result
                 }
             }
-            System.out.println("A word consisting of numbers only is " + goal);
+            System.out.println("A word consisting of numbers only is - " + goal);
         }
     }
 
@@ -223,9 +234,7 @@ public class StringHandler {
         boolean closeApp;
         do {
             Scanner input = new Scanner(System.in);
-            //clearScreen();
             printMenu();
-            //TODO: clear screen
             String userChoice = input.nextLine();
             closeApp = userChoosesOption(userChoice);
             if (!closeApp) {
@@ -258,9 +267,9 @@ public class StringHandler {
             case "5":
                 task5();
                 break;
-       /*      case "6":
+             case "6":
                 task6();
-                break;*/
+                break;
             case "7":
                 closeApp = true;
                 System.out.println("Exiting the program");
