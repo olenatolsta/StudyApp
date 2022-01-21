@@ -158,23 +158,35 @@ public class StringHandler {
 
     public boolean uniqueChars(String str) {  //searching for different symbols in a word
         char c; // current symbol in the string
-        for (int i = 0; i < str.length()-1; i++) {
+        for (int i = 0; i < str.length() - 1; i++) {
             c = str.charAt(i); // get a current symbol
-            if (str.indexOf(c, i+1) >= 0) // find a symbol, which is new
+            if (str.indexOf(c, i + 1) >= 0) // find a symbol, which is new
                 return false;
         }
         return true;
     }
 
+    private static int minDiffChars(String st) { // number of different chars
+        StringBuffer u = new StringBuffer(); // a string, that consists of uniwue chars only
+        String c; // current symbol in the string
+        for (int i = 0; i < st.length(); i++) {
+            c = String.valueOf(st.charAt(i)); // get a current symbol
+            if (u.indexOf(c) == -1) // the symbol is new
+                u.append(c); // adding the symbol
+        }
+        return u.length();
+    }
+
     public void task4() {
-        /*String[] arr = initArray();
+        String[] arr = initArray();
         printArray(arr);
         String goal = arr[0]; // a word which we search for
-        for (int i = 1; i < arr.length; i++) {
-            if (uniqueChars(arr[i]).length() < uniqueChars(goal).length())
-                goal = arr[i]; // new minimal element
+        for (int i = 0; i < arr.length; i++) {
+            if (minDiffChars(arr[i]) < minDiffChars(goal)) {
+                goal = arr[i]; // new  element with minimal number of different chars
+            }
+            System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + minDiffChars(goal));
         }
-        System.out.println("A word with min different symbols " + goal + ", quantity of different symbols: " + uniqueChars(goal).length());*/
     }
 
     public boolean isNumeric(String strNum) {
@@ -192,7 +204,7 @@ public class StringHandler {
     public void task5() {
         String[] arr = initArray();
         printArray(arr);
-        String goal="missing";
+        String goal = "missing";
         for (int i = 0; i < arr.length; i++) {
             if (uniqueChars(arr[i])) {
                 goal = arr[i];

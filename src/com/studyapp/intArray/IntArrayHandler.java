@@ -132,13 +132,14 @@ class IntArrayHandler {
         return sumValue;
     }
 
+    //Task 6. Elements that are listed more than once and which indexes are odd
     public void multipleElements() {
-       // TODO: replace 20 with dynamic value
-        int evenArray[] = new int[20];
+
+        int evenArray[] = new int[_arraySize];
         int k = 0;
         for (int i = 1; i < intArray.length; i = i + 2) {
             for (int j = i + 2; j < intArray.length; j = j + 2) {
-                if (intArray[i] == intArray[j]) {
+                if ((intArray[i] == intArray[j]) && intArray[i]!=0) {
                     evenArray[k] = intArray[j];
                     k++;
                     break;
@@ -169,6 +170,17 @@ class IntArrayHandler {
         }
         while (!validOption);
 
+    }
+
+    public void printMenu() {
+        System.out.println("Task 1: in the integer array change the positions of maximum negative element and minimum positive. \n" +
+                "Task 2: define sum of elements, that are located on even (четньіе) positions. \n" +
+                "Task 3: replace negative elements with zeros. \n" +
+                "Task 4: triple each positive element, which precedes the negative one.\n" +
+                "Task 5: find the difference between avarege and a value of minimal element.\n" +
+                "Task 6: print all the elements, which are listed more than once and which indexes are odd (нечетньіе).");
+        System.out.println("Tasks are numerated accordingly from 1 to 6. \n" +
+                "Select any of tasks or press 7 to Exit.");
     }
 
     private boolean userChoosesOption(String userChoice) {
@@ -247,7 +259,6 @@ class IntArrayHandler {
         System.out.println("Task 6. Elements that are listed more than once and which indexes are odd: ");
         System.out.println("Initial array is: ");
         printArray(intArray);
-        System.out.println("Resulting array is: ");
         multipleElements();
     }
 
