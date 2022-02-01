@@ -84,7 +84,7 @@ public class CalculatorHandler {
         double[] params = userSelectsParameters();
         for (int i = 0; i < params.length - 1; i++) {
             sum = params[i] + params[i + 1];
-            System.out.println("The sum of elements is: " + sum);
+            System.out.println("The sum of elements is: " + params[i] + "+" + params[i + 1] + "=" + sum);
         }
     }
 
@@ -93,7 +93,7 @@ public class CalculatorHandler {
         double[] params = userSelectsParameters();
         for (int i = 0; i < params.length - 1; i++) {
             diff = params[i] - params[i + 1];
-            System.out.println("The difference of elements is: " + diff);
+            System.out.println("The difference of elements is: " + params[i] + "-" + params[i + 1] + "=" + diff);
         }
     }
 
@@ -106,7 +106,7 @@ public class CalculatorHandler {
                 params = userSelectsParameters();
             }
             divRes = params[i] / params[i + 1];
-            System.out.println("The result of elements division is: " + divRes);
+            System.out.println("The result of elements division is: " + params[i] + "/" + params[i + 1] + "=" + divRes);
         }
     }
 
@@ -115,7 +115,7 @@ public class CalculatorHandler {
         double[] params = userSelectsParameters();
         for (int i = 0; i < params.length - 1; i++) {
             multRes = params[i] * params[i + 1];
-            System.out.println("The result of elements multiplication is: " + multRes);
+            System.out.println("The result of elements multiplication is: " + params[i] + "*" + params[i + 1] + "=" + multRes);
         }
     }
 }
