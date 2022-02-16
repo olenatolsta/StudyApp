@@ -1,12 +1,11 @@
 package com.studyapp.PlayRoom.Toys;
 
 public class Vehicles extends Toy {
-    public Vehicles() {
-        this("Vehicles");
-    }
+    static String[] _possibleNames = {"Pickup", "Truck", "Motorcycle", "Wagon"};
 
-    public Vehicles(String name) {
-        super(name);
-    }
+    public Vehicles(String name, String size, double cost) {possibleNames = _possibleNames;
+        init(size, cost, name);
 
+    }
 }
+

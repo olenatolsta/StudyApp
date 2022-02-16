@@ -1,11 +1,10 @@
 package com.studyapp.PlayRoom.Toys;
 
-public class BeachToys extends Toy{
-    public BeachToys() {
-        this("BeachToys");
-    }
+public class BeachToys extends Toy {
+    static String[] _possibleNames = {"Bucket", "Scoop", "Rake", "Sieve"};
 
-    public BeachToys(String name) {
-        super(name);
+    public BeachToys(String name, String size, double cost) { possibleNames = _possibleNames;
+        init(size, cost, name);
+
     }
 }

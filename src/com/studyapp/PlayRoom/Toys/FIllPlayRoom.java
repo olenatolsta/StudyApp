@@ -1,6 +1,9 @@
 package com.studyapp.PlayRoom.Toys;
 
-/*public class FIllPlayRoom {
+import java.io.IOException;
+import java.util.Scanner;
+
+public class FIllPlayRoom {
 
     //Constructor
     public FIllPlayRoom() {
@@ -36,7 +39,7 @@ package com.studyapp.PlayRoom.Toys;
             case 1:
                 addToy();
                 break;
-            case 2:
+          /*  case 2:
                 sortToysOnPrice();
                 break;
             case 3:
@@ -48,12 +51,18 @@ package com.studyapp.PlayRoom.Toys;
             case '0':
                 closeApp = true;
                 System.out.println("Exiting the program");
-                break;
+                break;*/
             default:
                 System.out.println("The input is wrong. Select an option to proceed - + - * / or x to Exit");
         }
         return closeApp;
     }
+
+    public void addToy() {
+
+    }
+
+
 }
-*/
+
 

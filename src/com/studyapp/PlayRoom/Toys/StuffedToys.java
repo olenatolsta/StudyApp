@@ -1,11 +1,11 @@
 package com.studyapp.PlayRoom.Toys;
 
 public class StuffedToys extends Toy {
-    public StuffedToys() {
-        this("StuffedToys");
-    }
+    static String[] _possibleNames = {"Stuffed Puppy", "Stuffed Teethless", "Stuffed Cat", "Stuffed Bear"};
 
-    public StuffedToys(String name) {
-        super(name);
+    public StuffedToys(String name, String size, double cost) {possibleNames = _possibleNames;
+        init(size, cost, name);
+
     }
 }
+
