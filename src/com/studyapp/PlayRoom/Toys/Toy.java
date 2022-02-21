@@ -31,9 +31,9 @@ public abstract class Toy {
         return cost;
     }
 
-    public void setCost(double newCost) {
+    /* public void setCost(double newCost) {
         this.cost = newCost;
-    }
+    } */
 
     public String getRandomName(){
         int n= 0;
