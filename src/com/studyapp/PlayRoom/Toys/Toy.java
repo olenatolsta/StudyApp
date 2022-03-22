@@ -11,7 +11,7 @@ public abstract class Toy {
     public Toy() {
 
     }
-    public void init(String size, double cost, String name) {
+    protected void init(String size, double cost, String name) {
         this.cost = cost;
         if (name == null)
             this.name=getRandomName();
