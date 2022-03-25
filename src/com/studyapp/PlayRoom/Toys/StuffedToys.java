@@ -5,7 +5,6 @@ public class StuffedToys extends Toy {
 
     public StuffedToys(String name, String size, double cost) {possibleNames = _possibleNames;
         init(size, cost, name);
-
     }
 }
 

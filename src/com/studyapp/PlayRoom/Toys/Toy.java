@@ -9,7 +9,6 @@ public abstract class Toy {
 
 // TODO: add setters
     public Toy() {
-
     }
     protected void init(String size, double cost, String name) {
         this.cost = cost;

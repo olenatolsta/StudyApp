@@ -50,13 +50,13 @@ public class ToyGenerator {
                 toyObject = new StuffedToys(null, getSize(), getPrice());
                 break;
             case "BuildingBricks":
-                toyObject = new StuffedToys(null, getSize(), getPrice());
+                toyObject = new BuildingBricks(null, getSize(), getPrice());
                 break;
             case "DevToys":
-                toyObject = new StuffedToys(null, getSize(), getPrice());
+                toyObject = new DevToys(null, getSize(), getPrice());
                 break;
             case "Vehicles":
-                toyObject = new StuffedToys(null, getSize(), getPrice());
+                toyObject = new Vehicles (null, getSize(), getPrice());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + randomToyType());
@@ -64,7 +64,7 @@ public class ToyGenerator {
         return toyObject;
     }
 
-    //   1.1 Create a loop from 0 to _toysNumber
+    //   1.1 Create a loop from 0 to toysNumber
     public static Toy[] toysArray(int toysNumber) {
         Toy[] arrayOfToys = new Toy[toysNumber];
         for (int i = 0; i < toysNumber; i++) {
@@ -72,12 +72,6 @@ public class ToyGenerator {
         }
         return arrayOfToys;
     }
-
-
-    //Find summary price of toys
-
-
-
 }
 
 

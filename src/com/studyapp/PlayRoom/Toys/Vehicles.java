@@ -5,7 +5,6 @@ public class Vehicles extends Toy {
 
     public Vehicles(String name, String size, double cost) {possibleNames = _possibleNames;
         init(size, cost, name);
-
     }
 }
 
