@@ -1,4 +1,6 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.Controller;
+
+import com.studyapp.PlayRoom.Toys.ToyStaff.Toy;
 
 class ToysQtyCalculator {
 
@@ -29,7 +31,7 @@ class ToysQtyCalculator {
     public Toy toyMinPrice() {
         Toy minElement = catalog[0];
         for (int i = 0; i < catalog.length; i++) {
-            if (catalog[i].cost < minElement.cost) {
+            if (catalog[i].getCost() < minElement.getCost()) {
                 minElement = catalog[i];
             }
         }
@@ -37,7 +39,7 @@ class ToysQtyCalculator {
     }
 
     public double minPriceQty() {
-        double minPrice = toyMinPrice().cost;
+        double minPrice = toyMinPrice().getCost();
         double minQty = budget / minPrice;
         return minQty;
     }
@@ -46,7 +48,7 @@ class ToysQtyCalculator {
     public Toy toyMaxPrice() {
         Toy maxElement = toyMinPrice();
         for (int i = 0; i < catalog.length; i++) {
-            if (catalog[i].cost > maxElement.cost) {
+            if (catalog[i].getCost() > maxElement.getCost()) {
                 maxElement = catalog[i];
             }
         }
@@ -54,7 +56,7 @@ class ToysQtyCalculator {
     }
 
     public double maxPriceQty() {
-        double maxPrice = toyMaxPrice().cost;
+        double maxPrice = toyMaxPrice().getCost();
         double maxQty = budget / maxPrice;
         return maxQty;
     }
@@ -62,7 +64,7 @@ class ToysQtyCalculator {
     public int averageQuantity() {
         double minQuantity = minPriceQty();
         double maxQuantity = maxPriceQty();
-        int aveQ = (int) Math.round((minQuantity + maxQuantity)/3);
+        int aveQ = (int) Math.round((minQuantity + maxQuantity)/4);
         return aveQ;
     }
 }

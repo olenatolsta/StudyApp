@@ -1,11 +1,11 @@
 package com.studyapp.PlayRoom.Toys;
 
+import com.studyapp.PlayRoom.Toys.Controller.Menu;
+
 public class PlayRoomApp {
 
     public static void main(String[] args) {
-        Toy[] toy = ToyGenerator.toysArray(50);
-        ToysQtyCalculator toysQtyCalculator = new ToysQtyCalculator(200, toy);
-        PlayRoom room = new PlayRoom(toysQtyCalculator);
-        room.availableOptions();
+        Menu menu = new Menu();
+        menu.availableOptions();
     }
 }

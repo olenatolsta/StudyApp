@@ -1,7 +1,6 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.Controller;
 
-import java.io.IOException;
-import java.util.Scanner;
+import com.studyapp.PlayRoom.Toys.ToyStaff.Toy;
 
 public class PlayRoom {
     private int toysQty;
@@ -12,56 +11,11 @@ public class PlayRoom {
         toysQ = toysQtyCalculator;
     }
 
-    public void availableOptions() {
-        boolean closeApp;
-        do {
-            System.out.println("Select an option below: ");
-            System.out.println("1. Add toys to a cart");
-            System.out.println("2. Sort toys on price");
-            System.out.println("3. Find toys that have Small size and which price is less than 10");
-            System.out.println("0. To Exit");
-            Scanner input = new Scanner(System.in);
-            String userChoice = input.nextLine();
-            closeApp = userSelectsOption(userChoice);
-            if (!closeApp) {
-                System.out.println("Press Enter to proceed..");
-                try {
-                    System.in.read();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        while (!closeApp);
-    }
-
-    public boolean userSelectsOption(String userChoice) {
-        boolean closeApp = false;
-        switch (userChoice) {
-            case "1":
-                addToy();
-                break;
-            case "2":
-                sortToysOnPrice();
-                break;
-            case "3":
-                findSpecificToys(10, 10);
-                break;
-            case "0":
-                closeApp = true;
-                System.out.println("Exiting the program");
-                break;
-            default:
-                System.out.println("The input is wrong. Select an option to proceed 1, 2, 3 or x to Exit");
-        }
-        return closeApp;
-    }
-
     public void printArray(Toy[] arrayToPrint) {
         for (int l = 0; l < arrayToPrint.length; l++) {
-            System.out.println("Toys name: " + arrayToPrint[l].name);
-            System.out.println("Cost: " + arrayToPrint[l].cost);
-            System.out.println("Size: " + arrayToPrint[l].size);
+            System.out.println("Toys name: " + arrayToPrint[l].getName());
+            System.out.println("Cost: " + arrayToPrint[l].getCost());
+            System.out.println("Size: " + arrayToPrint[l].getSize());
         }
     }
 
@@ -72,7 +26,7 @@ public class PlayRoom {
         Toy[] cart = new Toy[toysQty];
         int k;
         double sum = 0;
-        double minPriceToyCatalog = toysQ.toyMinPrice().cost;
+        double minPriceToyCatalog = toysQ.toyMinPrice().getCost();
         if (minPriceToyCatalog < budget) {
             for (int i = 0; i < cart.length; i++) {
                 Toy randToy;
@@ -81,7 +35,7 @@ public class PlayRoom {
                     randToy = catalog[k];
                 } while (randToy.getCost() >= (budget - sum));
                 cart[i] = randToy;
-                sum = sum + randToy.cost;
+                sum = sum + randToy.getCost();
             }
             System.out.println("The cart is: ");
 
@@ -95,7 +49,7 @@ public class PlayRoom {
         Toy tempCartElt;
         for (int i = 0; i < _cart.length - 1; i++) {
             for (int j = 0; j < (_cart.length - i - 1); j++) {
-                if (_cart[j].cost > _cart[j + 1].cost) {
+                if (_cart[j].getCost() > _cart[j + 1].getCost()) {
                     //swap elements
                     tempCartElt = _cart[j];
                     _cart[j] = _cart[j + 1];
@@ -108,23 +62,26 @@ public class PlayRoom {
     }
 
     //Find toys that have Small size and which price is less than 10
-    public void findSpecificToys(int specQty, int limPrice) {
-        Toy[] specToys = new Toy[10];
+    public void findSpecificToys() {
         Toy[] catalog = toysQ.getCatalog();
-        int i = 0;
-             while (specToys[specQty - 1] == null) {
+        int k = 0;
+        int specQty = (int) (Math.random() * (catalog.length / 3) + 1);
+        Toy[] specToys = new Toy[specQty];
+        int limPrice = (int) (Math.random() * 10 + 10);
+                while (specToys[specQty - 1] == null) {
                 for (int j = 0; j < catalog.length; j++) {
-                    if ((catalog[j].size == "Small" && catalog[j].cost < limPrice)&&(specToys[specQty - 1] == null)) {
-                        specToys[i] = catalog[j];
-                        i++;
+                    if ((catalog[j].getSize() == "Small" && catalog[j].getCost() < limPrice)&&(k<specToys.length)) {
+                        specToys[k] = catalog[j];
+                        k++;
+                        break;
                     }
                 }
             }
-                System.out.println("Toys that have Small size and which price is less than 10 are: ");
-                printArray(specToys);
-        }
-
+        System.out.println("Toys that have Small size and which price is less than 10 are: ");
+        printArray(specToys);
     }
+}
+
 
 
 

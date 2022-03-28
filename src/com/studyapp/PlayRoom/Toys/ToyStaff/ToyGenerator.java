@@ -1,4 +1,4 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.ToyStaff;
 
 public class ToyGenerator {
     /*
@@ -8,7 +8,7 @@ public class ToyGenerator {
         1.1.2 далее создать обьект вьібранного типа (свитч кейс)
         1.1.3 сгенерировать рандомно цену
         1.1.4 сгенерировать рандомно размер
-        1.1.5 вьібрпать рандомно одно из названий игрушки используя статический метод класса игрушки
+        1.1.5 вьібрать рандомно одно из названий игрушки используя статический метод класса игрушки
               в котором из статического массива имен будет вьібрано имя
         */
 
@@ -56,7 +56,7 @@ public class ToyGenerator {
                 toyObject = new DevToys(null, getSize(), getPrice());
                 break;
             case "Vehicles":
-                toyObject = new Vehicles (null, getSize(), getPrice());
+                toyObject = new Vehicles(null, getSize(), getPrice());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + randomToyType());

@@ -1,4 +1,4 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.ToyStaff;
 
 public class DevToys extends Toy {
     static String[] _possibleNames = {"Picture of a sand", "Knitting Set", "Embroidering Set", "Drawing set"};

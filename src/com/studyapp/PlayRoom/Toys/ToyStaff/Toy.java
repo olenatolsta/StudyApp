@@ -1,4 +1,4 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.ToyStaff;
 
 //Abstract toy characteristics
 public abstract class Toy {
@@ -17,6 +17,15 @@ public abstract class Toy {
         else this.name = name;
         this.size = size;
     }
+
+    public String getRandomName(){
+        int n= 0;
+        for (int i = 0; i < possibleNames.length; i++) {
+            n = (int) (Math.random() * possibleNames.length);
+        }
+        return possibleNames[n];
+    }
+    /*
     public Toy(String size, double cost, String name) {
         init(size, cost, name);
     }
@@ -26,23 +35,19 @@ public abstract class Toy {
         return "( " + name + " : " + cost + " : " + size + ")";
     }
 
-    public double getCost() {
-        return cost;
-    }
-
     /* public void setCost(double newCost) {
         this.cost = newCost;
     } */
 
-    public String getRandomName(){
-        int n= 0;
-        for (int i = 0; i < possibleNames.length; i++) {
-            n = (int) (Math.random() * possibleNames.length);
-        }
-        return possibleNames[n];
+    public double getCost() {
+        return cost;
     }
 
     public String getSize() {
         return size;
+    }
+
+    public String getName() {
+        return name;
     }
 }

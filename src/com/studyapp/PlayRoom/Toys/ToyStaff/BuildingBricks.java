@@ -1,4 +1,4 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.ToyStaff;
 
 public class BuildingBricks extends Toy {
     static String[] _possibleNames = {"Lego Building Bricks", "BurgKids Building Bricks", "Panloss Building Bricks", "Garunk Building Bricks"};

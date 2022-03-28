@@ -1,4 +1,4 @@
-package com.studyapp.PlayRoom.Toys;
+package com.studyapp.PlayRoom.Toys.ToyStaff;
 
 public class Vehicles extends Toy {
     static String[] _possibleNames = {"Pickup", "Truck", "Motorcycle", "Wagon"};
