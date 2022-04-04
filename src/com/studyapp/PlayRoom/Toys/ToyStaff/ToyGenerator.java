@@ -13,7 +13,9 @@ public class ToyGenerator {
         */
 
     //   1.1.1 On each step of the loop randomly choose a type of toy that should be created
+    //why static?
     private static String randomToyType() {
+        //please add more readable variable
         int n = 0;
         String toyType[] = {"BeachToys", "BuildingBricks", "DevToys", "StuffedToys", "Vehicles"};
         for (int i = 0; i < toyType.length; i++) {
@@ -24,13 +26,17 @@ public class ToyGenerator {
 
     //Initialize the array with toys prices
     // 1.1.3 Randomly generate a price
+    //why static?
     public static double getPrice() {
+        //useless variable
         double n = (int) (Math.random() * 15.23 + 5);
         return n;
     }
 
     //1.1.4 Randomly generate a size
+    //why static?
     private static String getSize() {
+        //please add more readable variable
         int n = 0;
         String toySize[] = {"Small", "Middle", "Big"};
         for (int i = 0; i < toySize.length; i++) {
@@ -40,10 +46,13 @@ public class ToyGenerator {
     }
 
     //1.1.2 Create an object of selected type (switch-case)
+    //What should an access modifier be here?
+    //why static?
     public static Toy generateToy() {
         Toy toyObject;
         switch (randomToyType()) {
             case "BeachToys":
+                //Why null parameter?
                 toyObject = new BeachToys(null, getSize(), getPrice());
                 break;
             case "StuffedToys":
@@ -65,6 +74,7 @@ public class ToyGenerator {
     }
 
     //   1.1 Create a loop from 0 to toysNumber
+    //why static?
     public static Toy[] toysArray(int toysNumber) {
         Toy[] arrayOfToys = new Toy[toysNumber];
         for (int i = 0; i < toysNumber; i++) {

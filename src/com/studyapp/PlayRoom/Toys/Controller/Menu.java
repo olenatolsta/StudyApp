@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
+    //Why static? You can create an instance of ToyGenerator by constructor and then call the toysArray method
     Toy[] toy = ToyGenerator.toysArray(50);
     ToysQtyCalculator toysQtyCalculator = new ToysQtyCalculator(200, toy);
     PlayRoom playRoom = new PlayRoom(toysQtyCalculator);
@@ -34,6 +35,7 @@ public class Menu {
         while (!closeApp);
     }
 
+    //why public?
     public boolean userSelectsOption(String userChoice) {
         boolean closeApp = false;
         switch (userChoice) {

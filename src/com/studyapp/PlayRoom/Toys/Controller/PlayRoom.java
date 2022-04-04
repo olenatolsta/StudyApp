@@ -3,8 +3,8 @@ package com.studyapp.PlayRoom.Toys.Controller;
 import com.studyapp.PlayRoom.Toys.ToyStaff.Toy;
 
 public class PlayRoom {
-    private int toysQty;
-    private ToysQtyCalculator toysQ;
+    private int toysQty;//why is it class variable
+    private ToysQtyCalculator toysQ;//should be final
 
     //Constructor
     PlayRoom(ToysQtyCalculator toysQtyCalculator) {
@@ -12,6 +12,7 @@ public class PlayRoom {
     }
 
     public void printArray(Toy[] arrayToPrint) {
+        //other option for 'for' loop
         for (int l = 0; l < arrayToPrint.length; l++) {
             System.out.println("Toys name: " + arrayToPrint[l].getName());
             System.out.println("Cost: " + arrayToPrint[l].getCost());
@@ -19,6 +20,7 @@ public class PlayRoom {
         }
     }
 
+    //What should an access modifier be here?
     public Toy[] addToy() {
         toysQty = toysQ.averageQuantity();
         double budget = toysQ.getBudget();
@@ -44,6 +46,7 @@ public class PlayRoom {
         return cart;
     }
 
+    //What should an access modifier be here?
     public void sortToysOnPrice() {
         Toy[] _cart = addToy();
         Toy tempCartElt;
@@ -62,6 +65,7 @@ public class PlayRoom {
     }
 
     //Find toys that have Small size and which price is less than 10
+    //What should an access modifier be here?
     public void findSpecificToys() {
         Toy[] catalog = toysQ.getCatalog();
         int k = 0;
@@ -69,7 +73,9 @@ public class PlayRoom {
         Toy[] specToys = new Toy[specQty];
         int limPrice = (int) (Math.random() * 10 + 10);
                 while (specToys[specQty - 1] == null) {
+                    //other option for 'for' loop
                 for (int j = 0; j < catalog.length; j++) {
+                    //equal method for string
                     if ((catalog[j].getSize() == "Small" && catalog[j].getCost() < limPrice)&&(k<specToys.length)) {
                         specToys[k] = catalog[j];
                         k++;
