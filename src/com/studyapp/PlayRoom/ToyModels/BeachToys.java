@@ -1,8 +1,8 @@
-package com.studyapp.PlayRoom.Toys.ToyStaff;
+package com.studyapp.PlayRoom.ToyModels;
 
 public class BeachToys extends Toy {
-    // why static?
-    static String[] _possibleNames = {"Bucket", "Scoop", "Rake", "Sieve"};
+    // why static? // [Olena] re-worked
+    private String[] _possibleNames = {"Bucket", "Scoop", "Rake", "Sieve"};
 
     public BeachToys(String name, String size, double cost) {
         possibleNames = _possibleNames;
