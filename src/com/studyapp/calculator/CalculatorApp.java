@@ -2,7 +2,7 @@
  *Main.java
  *
  * Version 0.1
- */
+*/
 
 package com.studyapp.calculator;
 

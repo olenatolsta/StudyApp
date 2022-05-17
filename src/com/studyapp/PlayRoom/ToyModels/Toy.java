@@ -9,7 +9,6 @@ public abstract class Toy {
     String[] possibleNames;
 
     //remove useless default constructor // [Olena] re-worked
-
     protected void init(String size, double cost, String name) {
         this.cost = cost;
         if (name == null)
