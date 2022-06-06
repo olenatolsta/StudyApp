@@ -1,6 +1,6 @@
 package com.studyapp.PlayRoom.Toys.Controller;
 
-import com.studyapp.PlayRoom.Toys.ToyStaff.Toy;
+import com.studyapp.PlayRoom.ToyModels.Toy;
 
 class ToysQtyCalculator {
 
@@ -11,12 +11,12 @@ class ToysQtyCalculator {
     5. Значение из (4) будет искомьім количеством игрушек
      */
 
-    private Toy[] catalog;
-    private double budget;
+    private final Toy[] catalog;//should be final - [Olena] Changed to final
+    private final double budget;//should be final - [Olena] Changed to final
     //Constructor
-    ToysQtyCalculator(double _budget, Toy[] _catalog){
-        budget = _budget;
-        catalog = _catalog;
+    ToysQtyCalculator(double tbudget, Toy[] tcatalog){
+        budget = tbudget;
+        catalog = tcatalog;
     }
 
     public double getBudget(){
@@ -28,43 +28,45 @@ class ToysQtyCalculator {
     }
 
     //Find a Toy with minimal price
-    public Toy toyMinPrice() {
+    //What should an access modifier be here? - [Olena] Changed to default
+    Toy toyMinPrice() {
         Toy minElement = catalog[0];
-        for (int i = 0; i < catalog.length; i++) {
-            if (catalog[i].getCost() < minElement.getCost()) {
-                minElement = catalog[i];
+        //other option for 'for' loop - [Olena] Changed to foreach
+        for (Toy i : catalog) {
+            if (i.getCost() < minElement.getCost()) {
+                minElement = i;
             }
         }
         return minElement;
     }
 
-    public double minPriceQty() {
-        double minPrice = toyMinPrice().getCost();
-        double minQty = budget / minPrice;
-        return minQty;
+    //What should an access modifier be here?
+    private double minPriceQty() {
+        //useless variable - [Olena] Changed
+        return budget /toyMinPrice().getCost();
     }
 
     //Find a Toy with max price
-    public Toy toyMaxPrice() {
+    //What should an access modifier be here? - [Olena] Changed to default
+    private Toy toyMaxPrice() {
         Toy maxElement = toyMinPrice();
-        for (int i = 0; i < catalog.length; i++) {
-            if (catalog[i].getCost() > maxElement.getCost()) {
-                maxElement = catalog[i];
+        //other option for 'for' loop - [Olena] Changed to foreach
+        for (Toy i : catalog) {
+            if (i.getCost() > maxElement.getCost()) {
+                maxElement = i;
             }
         }
         return maxElement;
     }
-
-    public double maxPriceQty() {
-        double maxPrice = toyMaxPrice().getCost();
-        double maxQty = budget / maxPrice;
-        return maxQty;
+    //What should an access modifier be here? [Olena] Changed to private
+    private double maxPriceQty() {
+        //useless variable - [Olena] Changed
+        return budget/toyMaxPrice().getCost();
     }
 
-    public int averageQuantity() {
-        double minQuantity = minPriceQty();
-        double maxQuantity = maxPriceQty();
-        int aveQ = (int) Math.round((minQuantity + maxQuantity)/4);
-        return aveQ;
+    //What should an access modifier be here? [Olena] Changed to default
+    int averageQuantity() {
+        //useless variable - [Olena] Changed
+        return (int) Math.round((minPriceQty() + maxPriceQty())/4);
     }
 }

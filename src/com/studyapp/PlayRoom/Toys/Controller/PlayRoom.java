@@ -1,25 +1,29 @@
 package com.studyapp.PlayRoom.Toys.Controller;
 
-import com.studyapp.PlayRoom.Toys.ToyStaff.Toy;
+import com.studyapp.PlayRoom.ToyModels.Toy;
 
 public class PlayRoom {
-    private int toysQty;
-    private ToysQtyCalculator toysQ;
+    private final ToysQtyCalculator toysQ; //should be final - [Olena] Changed to final
+    int limPrice = (int) (Math.random() * 10 + 10);
 
     //Constructor
     PlayRoom(ToysQtyCalculator toysQtyCalculator) {
         toysQ = toysQtyCalculator;
     }
 
-    public void printArray(Toy[] arrayToPrint) {
-        for (int l = 0; l < arrayToPrint.length; l++) {
-            System.out.println("Toys name: " + arrayToPrint[l].getName());
-            System.out.println("Cost: " + arrayToPrint[l].getCost());
-            System.out.println("Size: " + arrayToPrint[l].getSize());
+    public void printArray(Toy[] arrayToPrint)
+    {
+        //other option for 'for' loop  - - [Olena] Changed to foreach
+        for (Toy k : arrayToPrint) {
+            System.out.println("Toys name: " + k.getName());
+            System.out.println("Cost: " + k.getCost());
+            System.out.println("Size: " + k.getSize());
         }
     }
 
-    public Toy[] addToy() {
+    //What should an access modifier be here? [Olena] Changed to default from public
+    Toy[] addToy() {
+        int toysQty;
         toysQty = toysQ.averageQuantity();
         double budget = toysQ.getBudget();
         Toy[] catalog = toysQ.getCatalog();
@@ -44,7 +48,8 @@ public class PlayRoom {
         return cart;
     }
 
-    public void sortToysOnPrice() {
+    //What should an access modifier be here? [Olena] Changed to default from public
+    void sortToysOnPrice() {
         Toy[] _cart = addToy();
         Toy tempCartElt;
         for (int i = 0; i < _cart.length - 1; i++) {
@@ -62,66 +67,24 @@ public class PlayRoom {
     }
 
     //Find toys that have Small size and which price is less than 10
-    public void findSpecificToys() {
+    //What should an access modifier be here?  [Olena] Changed to default from public
+    void findSpecificToys() {
         Toy[] catalog = toysQ.getCatalog();
         int k = 0;
         int specQty = (int) (Math.random() * (catalog.length / 3) + 1);
         Toy[] specToys = new Toy[specQty];
-        int limPrice = (int) (Math.random() * 10 + 10);
-                while (specToys[specQty - 1] == null) {
-                for (int j = 0; j < catalog.length; j++) {
-                    if ((catalog[j].getSize() == "Small" && catalog[j].getCost() < limPrice)&&(k<specToys.length)) {
-                        specToys[k] = catalog[j];
-                        k++;
-                        break;
-                    }
+        while (specToys[specQty - 1] == null) {
+            //other option for 'for' loop - [Olena changed]
+            for (Toy j : catalog) {
+                //equal method for string - [Olena] changed
+                if ((j.getSize().equals("Small") && j.getCost() < limPrice) && (k < specToys.length)) {
+                    specToys[k] = j;
+                    k++;
+                    break;
                 }
             }
-        System.out.println("Toys that have Small size and which price is less than 10 are: ");
+        }
+        System.out.println("Toys that have Small size and which price is less than " + limPrice + " are: ");
         printArray(specToys);
     }
 }
-
-
-
-
-
-
- /*
-    1. Find a toy, which has a minimum price
-    2. Create a loop, which will compare a sum of toys prices each time a toy is added to the PlayRoom with budget.
-        The loop will continue executing till the difference between sum of toys prices and the budget is bigger than
-        minimum toy's price
-        2.1 Create a method, that will select a toy from the catalog
-            2.1.1 Создаем новьй массив такого же размера как каталог
-            2.1.2 Наполняем новьій массив игрушками рандомно вьібранньіми - фиксированное кол-во не превьішая сумму бюджета
-     */
-
-    /*//2.1.1 Создаем новьй массив длиной равной кол-ву игрушек
-    public Toy[] addToyPreselect(int _toysQty) {
-
-        double minPriceToy = toysQtyCalculator.toyMinPrice().cost;
-        //Если стоимость игрушек, умноженная на кол-во, не превьішает бюджет, добавляем след игрушку
-        Toy[] preSelectedToys = new Toy[_toysQty];
-        if (minPriceToy * _toysQty < budget) {
-            double sum = 0;
-            for (int i = 0; i < _toysQty; i++) {
-                //2.1.2 Наполняем новьій массив игрушками с минимальной ценой - фиксированное кол-во
-                for (int j = 0; j < _catalog.length; j++) {
-                    if (_catalog[j].cost == minPriceToy) {
-                        preSelectedToys[i] = _catalog[j];
-                        sum = sum + _catalog[j].cost;
-                    }
-                }
-            }
-        } else {
-            System.out.println("Budget limit exceeded, minimum toy's price is " + minPriceToy);
-        }
-        return preSelectedToys;
-    }*/
-
-
-
-
-
-

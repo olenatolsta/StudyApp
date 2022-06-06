@@ -1,15 +1,27 @@
 package com.studyapp.PlayRoom.Toys.Controller;
 
-import com.studyapp.PlayRoom.Toys.ToyStaff.Toy;
-import com.studyapp.PlayRoom.Toys.ToyStaff.ToyGenerator;
+import com.studyapp.PlayRoom.ToyGenerator;
+import com.studyapp.PlayRoom.ToyModels.Toy;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
-    Toy[] toy = ToyGenerator.toysArray(50);
-    ToysQtyCalculator toysQtyCalculator = new ToysQtyCalculator(200, toy);
-    PlayRoom playRoom = new PlayRoom(toysQtyCalculator);
+    int toysNumber;
+    double budget;
+    PlayRoom playRoom;
+
+    //Why static? You can create an instance of ToyGenerator by constructor and then call the toysArray method
+    //Toy[] toy = ToyGenerator.toysArray(50);
+    // [Olena] re-worked
+    public Menu(int _toysNumber, double _budget) {
+        this.toysNumber = _toysNumber;
+        this.budget = _budget;
+        ToyGenerator ttoy = new ToyGenerator();
+        Toy[] tttoy = ttoy.toysArray(toysNumber);
+        ToysQtyCalculator toysQtyCalculator = new ToysQtyCalculator(budget, tttoy);
+        this.playRoom = new PlayRoom(toysQtyCalculator);
+    }
 
     public void availableOptions() {
         boolean closeApp;
@@ -17,7 +29,7 @@ public class Menu {
             System.out.println("Select an option below: ");
             System.out.println("1. Add toys to a cart");
             System.out.println("2. Sort toys on price");
-            System.out.println("3. Find toys that have Small size and which price is less than 10");
+            System.out.println("3. Find toys that have Small size and which price is less than " + playRoom.limPrice);
             System.out.println("0. To Exit");
             Scanner input = new Scanner(System.in);
             String userChoice = input.nextLine();
@@ -34,7 +46,8 @@ public class Menu {
         while (!closeApp);
     }
 
-    public boolean userSelectsOption(String userChoice) {
+    //why public?
+    private boolean userSelectsOption(String userChoice) {
         boolean closeApp = false;
         switch (userChoice) {
             case "1":

@@ -1,15 +1,14 @@
-package com.studyapp.PlayRoom.Toys.ToyStaff;
+package com.studyapp.PlayRoom.ToyModels;
 
 //Abstract toy characteristics
 public abstract class Toy {
-    public double cost;
-    public String name;
-    public String size;
-    public String[] possibleNames;
+    //What should an access modifier be here for all variables? // [Olena] re-worked
+    private double cost;
+    private String name;
+    private String size;
+    String[] possibleNames;
 
-// TODO: add setters
-    public Toy() {
-    }
+    //remove useless default constructor // [Olena] re-worked
     protected void init(String size, double cost, String name) {
         this.cost = cost;
         if (name == null)
@@ -18,7 +17,8 @@ public abstract class Toy {
         this.size = size;
     }
 
-    public String getRandomName(){
+    //What should an access modifier be here? [Olena] re-worked
+    private String getRandomName(){
         int n= 0;
         for (int i = 0; i < possibleNames.length; i++) {
             n = (int) (Math.random() * possibleNames.length);
