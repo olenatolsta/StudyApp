@@ -6,6 +6,6 @@ public class PlayRoomApp {
 
     public static void main(String[] args) {
         Menu menu = new Menu(50, 200);
-        menu.availableOptions();
+        menu. availableOptions();
     }
 }
